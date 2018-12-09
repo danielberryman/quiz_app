@@ -1,0 +1,29 @@
+<%= form_for(@quiz) do |quiz_form| %>
+  <ul>
+  	<li><%= quiz_form.label "Quiz Title" %></li>
+  	<li><%= quiz_form.text_field :title %></li>
+
+  	<% options_counter = 0 %>
+
+  	<%= quiz_form.fields_for :questions do |questions_form| %>
+
+  	  <li>
+  	  	<%= questions_form.label "Question: " %>
+  	  	<%= questions_form.text_field :name %>
+  	  </li>
+
+  	  <%= questions_form.fields_for :options do |options_form| %>
+  	  	<li>
+  	  		<%= options_form.label "Answer: " %>
+  	  		<%= options_form.text_field :content %>
+  	  		<%= options_form.label "Correct?" %>
+  	  		<%= radio_button_tag questions_form.index, true, "correct_#{options_form.index}" %>
+  	  	</li>
+  	  	<% options_counter += 1 %>
+  	  <% end %>
+
+  	<% end %>
+
+  </ul>
+  <%= quiz_form.submit "Create New Quiz" %>
+<% end %>
