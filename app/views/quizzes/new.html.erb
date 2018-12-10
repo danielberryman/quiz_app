@@ -1,3 +1,5 @@
+<% choices = [['Incorrect', false],['Correct', true]] %>
+
 <%= form_for(@quiz) do |quiz_form| %>
   <ul>
   	<li><%= quiz_form.label "Quiz Title" %></li>
@@ -16,8 +18,8 @@
   	  	<li>
   	  		<%= options_form.label "Answer: " %>
   	  		<%= options_form.text_field :content %>
-  	  		<%= options_form.label "Correct?" %>
-  	  		<%= radio_button_tag questions_form.index, true, "correct_#{options_form.index}" %>
+          <%= options_form.label :correct %>
+  	  		<%= options_form.select :correct, options_for_select([['Incorrect', false],['Correct', true]]) %>
   	  	</li>
   	  	<% options_counter += 1 %>
   	  <% end %>
