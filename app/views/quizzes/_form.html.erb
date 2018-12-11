@@ -1,0 +1,31 @@
+<%= form_for(quiz) do |quiz_form| %>
+  <ul>
+  	<li><%= quiz_form.label "Quiz Title" %></li>
+  	<li><%= quiz_form.text_field :title %></li>
+
+  	<% options_counter = 0 %>
+
+  	<%= quiz_form.fields_for :questions do |questions_form| %>
+
+  	  <li>
+  	  	<%= questions_form.label "Question: " %>
+  	  	<%= questions_form.text_field :name %>
+  	  </li>
+
+  	  <%= questions_form.fields_for :options do |options_form| %>
+
+        <% if route === "new" %>
+  	  	  <%= render partial: "options_new", 
+            locals: {options_form: options_form, options_counter: options_counter} %>
+        <% else %>
+          <%= render partial: "options_edit", 
+            locals: {options_form: options_form, options_counter: options_counter} %>
+        <% end %>
+        
+  	  <% end %>
+
+  	<% end %>
+
+  </ul>
+  <%= quiz_form.submit %>
+<% end %>

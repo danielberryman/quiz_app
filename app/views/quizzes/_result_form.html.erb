@@ -1,0 +1,20 @@
+<%= form_for(result) do |result_form| %>
+  <div>
+  	<% questions_counter = 0 %>
+  	<% options_counter = 0 %>
+
+  	<%= result_form.fields_for :answers do |answers_form| %>
+
+  	  <p>
+  	  	<%= answers_form.label "#{@quiz.questions[questions_counter].name}" %>
+  	  	<%= answers_form.select :correct, 
+  	  	  options_from_collection_for_select(
+  	  	    @quiz.questions[questions_counter].options, 'id', 'content') %>
+  	  </p>
+
+  	  <% questions_counter += 1 %>
+  	<% end %>
+
+  </div>
+  <%= result_form.submit "See Results" %>
+<% end %>

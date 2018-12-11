@@ -1,0 +1,17 @@
+<h1>All Quizzes</h1>
+<%= button_to "Create New Quiz", new_quiz_path, :method => "get" %>
+<ol>
+  <% @quizzes.each do |quiz| %>
+    <li>
+      <h2><%= quiz.title %>: 
+      	<span style="font-size: .75em; font-weight: normal">
+          <%= quiz.questions.count %> Questions 
+      	  <% if current_user.id === quiz.user_id %>
+            <%= button_to "Edit", edit_quiz_path(quiz), :method => "get" %>
+          <% end %>
+          <%= link_to "Take Quiz", new_result_path(:quiz_id => quiz.id, :quiz_title => quiz.title) %>
+      	</span>
+      </h2>
+    </li>
+  <% end %>
+</ol>

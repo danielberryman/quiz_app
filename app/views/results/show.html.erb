@@ -1,0 +1,12 @@
+<h1>Your Results for "<%= @quiz.title %>".</h1> 
+
+<% number_correct = @result.number_correct %>
+<% question_count = @result.answers.count %>
+
+<% if @result.true? %>
+  <p>You passed!</p>
+  <p>You scored <%= number_correct %>/<%= question_count %>!</p>
+<% else %>
+  <p>Unfortunately, you didn't pass.</p>
+  <p>You scored <%= number_correct %>/<%= question_count %></p>
+<% end %>

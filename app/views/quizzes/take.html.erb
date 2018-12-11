@@ -1,0 +1,4 @@
+<h1>Quiz #<%= @quiz.id %></h1>
+<p><%= @quiz.title %></p>
+
+<%= render partial: "result_form", locals: {result: @result, quiz: @quiz} %>

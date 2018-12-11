@@ -6,4 +6,5 @@ class Quiz < ApplicationRecord
 
   accepts_nested_attributes_for :questions
   accepts_nested_attributes_for :options
+
 end

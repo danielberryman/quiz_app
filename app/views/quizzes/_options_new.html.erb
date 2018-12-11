@@ -1,0 +1,7 @@
+<li>
+  <%= options_form.label "Answer: " %>
+  <%= options_form.text_field :content %>
+  <%= options_form.label :correct %>
+  <%= options_form.select :correct, options_for_select([['Incorrect', false],['Correct', true]]) %>
+</li>
+<% options_counter += 1 %>

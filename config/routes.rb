@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :quizzes
+  get 'quizzes/:id/take', to: 'quizzes#take'
   resources :results
 end

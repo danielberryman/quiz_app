@@ -1,5 +1,9 @@
 class QuizzesController < ApplicationController
 
+  def index
+    @quizzes = Quiz.all
+  end
+
   def new
   	@quiz = Quiz.new
   	3.times {@quiz.questions.build}
@@ -21,10 +25,30 @@ class QuizzesController < ApplicationController
   	end
   end
 
+  def edit
+    @quiz = Quiz.find(params[:id])
+  end
+
+  def update
+    @quiz = Quiz.find(params[:id])
+    if @quiz.update(quiz_params)
+      @quiz.save
+      redirect_to quiz_path(@quiz)
+    else
+     render 'edit'
+    end
+  end
+
+  def take
+    @quiz = Quiz.find(params[:id])
+    @result = Result.new
+    3.times {@result.answers.build}
+  end
+
   private
 
   def quiz_params
-  	params.require(:quiz).permit(:title, questions_attributes: [:name, options_attributes: [:content, :correct]])
+  	params.require(:quiz).permit(:title, questions_attributes: [:id, :name, options_attributes: [:id, :content, :correct]])
   end
 
 end
